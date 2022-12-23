@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #define true 1
 #define false 0
@@ -73,6 +74,7 @@ void pop(Stacks *stacks)
 
 uint8_t top(Stacks stacks)
 {
+    assert(stacks.index !=0 && "Stack is Empty & Can't get top");
     return stacks.array[(stacks.index) - 1];
 }
 
@@ -88,7 +90,7 @@ int main(int argc, char const *argv[])
     Stacks stacks1;
     createStacks(&stacks1,5);
     printf("---PUSH ST1---\n");
-
+   
     push(&stacks1, 5);
     push(&stacks1, 4);
     push(&stacks1, 8);
