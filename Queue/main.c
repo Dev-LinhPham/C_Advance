@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <assert.h>
 
 #define true 1
 #define false 0
@@ -78,14 +77,24 @@ void dequeue(Queue *element)
 // This operation returns the element at the front end without removing it.
 uint8_t front(Queue element)
 {
-    assert(element.index != 0 && "Queue is empty & Can't get front");
-    return element.array[0];
+    if (isEmpty(element))
+    {
+    }
+    else
+    {
+        return element.array[0];
+    }
 }
 // This operation returns the element at the rear end without removing it.
 uint8_t rear(Queue element)
 {
-    assert(element.index != 0 && "Queue is empty & Can't get rear");
-    return element.array[element.index - 1];
+    if (isEmpty(element))
+    {
+    }
+    else
+    {
+        return element.array[element.index - 1];
+    }
 }
 // This operation returns the size of the queue i.e. the total number of elements it contains.
 uint8_t size(Queue element)
