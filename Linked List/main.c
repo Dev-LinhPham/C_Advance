@@ -103,6 +103,7 @@ void pop_back(Node *head)
         p = p->next;
         i++;
     }
+    free(p->next);
     p->next = NULL; // Đặt next của node kế node cuối = NULL
 }
 
@@ -113,8 +114,8 @@ void erase(Node *head, int positon)
     Node temp = NULL;
     if (positon == 0)
     {
-        p = p->next;
-        *head = p;
+        *head = (*head)->next;
+        free(p);
     }
     else
     {
@@ -125,7 +126,7 @@ void erase(Node *head, int positon)
         }
         temp = p->next;
         p->next = temp->next;
-        temp->next = NULL;
+        free(temp);
     }
 }
 
