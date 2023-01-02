@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <assert.h>
 
 #define true 1
 #define false 0
@@ -12,8 +11,7 @@ typedef struct
     uint8_t index;
     uint8_t size;
     uint8_t *array;
-}Stacks;
-
+} Stacks;
 
 void createStacks(Stacks *stacks, int size)
 {
@@ -74,8 +72,13 @@ void pop(Stacks *stacks)
 
 uint8_t top(Stacks stacks)
 {
-    assert(stacks.index !=0 && "Stack is Empty & Can't get top");
-    return stacks.array[(stacks.index) - 1];
+    if (isEmpty(stacks))
+    {
+    }
+    else
+    {
+        return stacks.array[(stacks.index) - 1];
+    }
 }
 
 uint8_t size(Stacks stacks)
@@ -85,37 +88,38 @@ uint8_t size(Stacks stacks)
 
 int main(int argc, char const *argv[])
 {
-   
+
     printf("---STACKS 1---\n");
     Stacks stacks1;
-    createStacks(&stacks1,5);
+    createStacks(&stacks1, 5);
     printf("---PUSH ST1---\n");
-   
+
     push(&stacks1, 5);
     push(&stacks1, 4);
     push(&stacks1, 8);
     push(&stacks1, 2);
 
-    printf("size: %d\n",size(stacks1));
+    printf("size: %d\n", size(stacks1));
+     printf("top: %d\n", top(stacks1));
 
     printf("---POP ST1---\n");
     pop(&stacks1);
 
-    printf("size: %d\n",size(stacks1));
+    printf("size: %d\n", size(stacks1));
 
-    printf("top: %d\n",top(stacks1));
+    printf("top: %d\n", top(stacks1));
 
     printf("---POP ST1---\n");
     pop(&stacks1);
 
-    printf("size: %d\n",size(stacks1));
+    printf("size: %d\n", size(stacks1));
 
-    printf("top: %d\n",top(stacks1));
+    printf("top: %d\n", top(stacks1));
 
     printf("---STACKS 2---\n");
 
     Stacks stacks2;
-    createStacks(&stacks2,7);
+    createStacks(&stacks2, 7);
 
     printf("---PUSH ST2---\n");
     push(&stacks2, 10);
@@ -125,17 +129,17 @@ int main(int argc, char const *argv[])
     push(&stacks2, 45);
     push(&stacks2, 67);
 
-    printf("size: %d\n",size(stacks2));
-    printf("top: %d\n",top(stacks2));
-    
+    printf("size: %d\n", size(stacks2));
+    printf("top: %d\n", top(stacks2));
+
     printf("---MASTER---\n");
 
     Stacks *master;
     master = &stacks1;
 
-    printf("stack1[2]: %d\n",master->array[master->index]);
+    printf("stack1[2]: %d\n", master->array[master->index]);
 
-    printf("size stack1: %d\n",master->index);
+    printf("size stack1: %d\n", master->index);
 
     return 0;
 }
